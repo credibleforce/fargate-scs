@@ -1,0 +1,5 @@
+1514 (vmware) - found
+50512 (cisco asa) - found but tcp reset preventing handshake
+50519 (palo) - found
+514 (syslog)
+50514 (cisco iso) - found

@@ -1,0 +1,97 @@
+splunk:
+  conf:
+    - key: indexes
+      value:
+        directory: /opt/splunk/etc/system/local
+        content:
+          # indexes for test
+          shared_ev_pci_net:
+            homePath: $SPLUNK_DB/$_index_name/db
+            coldPath: $SPLUNK_DB/$_index_name/colddb
+            thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          shared_ev_pci_sec:
+            homePath: $SPLUNK_DB/$_index_name/db
+            coldPath: $SPLUNK_DB/$_index_name/colddb
+            thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          shared_ev_infra_prod:
+            homePath: $SPLUNK_DB/$_index_name/db
+            coldPath: $SPLUNK_DB/$_index_name/colddb
+            thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          
+            # Default sc4s indexes
+          # email:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # epav:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # epintel:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # infraops:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # netauth:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # netdlp:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # netdns:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # netfw:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # netids:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # netlb:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # netops:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # netwaf:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # netproxy:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # netipam:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # oswin:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # oswinsec:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # osnix:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # print:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb
+          # em_metrics:
+          #   homePath: $SPLUNK_DB/$_index_name/db
+          #   coldPath: $SPLUNK_DB/$_index_name/colddb
+          #   thawedPath: $SPLUNK_DB/$_index_name/thaweddb

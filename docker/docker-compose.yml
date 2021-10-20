@@ -1,0 +1,97 @@
+#Splunk Connect for Syslog (SC4S) by Splunk, Inc.
+#
+#To the extent possible under law, the person who associated CC0 with
+#Splunk Connect for Syslog (SC4S) has waived all copyright and related or neighboring rights
+#to Splunk Connect for Syslog (SC4S).
+#
+#You should have received a copy of the CC0 legalcode along with this
+#work.  If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+version: "3.7"
+services:
+
+  sc4s:
+    image: splunk/scs:latest
+    network_mode: "bridge"
+    container_name: sc4s
+    # networks:
+    #   - host
+    hostname: sc4s
+    ports:
+      - "514:514"
+      - "514:514/udp"
+      - "1514:1514"
+      - "1514:1514/udp"
+      - "50512:50512"
+      - "50513:50513"
+      - "50514:50514"
+      - "50515:50515"
+      - "50516:50516"
+      - "50517:50517"
+      - "50518:50518"
+      - "50519:50519"
+      - "50512:50512/udp"
+      - "50513:50513/udp"
+      - "50514:50514/udp"
+      - "50515:50515/udp"
+      - "50516:50516/udp"
+      - "50517:50517/udp"
+      - "50518:50518/udp"
+      - "50519:50519/udp"
+    stdin_open: true
+    tty: true
+    links:
+      - splunk
+    environment:
+      # add fireye destination here if required
+      #- SC4S_DEST_GLOBAL_ALTERNATES=d_fireeye_nx
+      - SPLUNK_HEC_URL=https://splunk:8088
+      - SPLUNK_HEC_TOKEN=YOUR_HEC_TOKEN_HERE
+      - SC4S_SOURCE_TLS_ENABLE=no
+      - SC4S_DEST_SPLUNK_HEC_TLS_VERIFY=no
+      - SC4S_LISTEN_CISCO_ASA_TCP_PORT=50512
+      - SC4S_LISTEN_CISCO_IOS_TCP_PORT=50514
+      - SC4S_LISTEN_F5_BIGIP_TCP_PORT=50517
+      - SC4S_LISTEN_PALOALTO_PANOS_TCP_PORT=50519
+      - SC4S_LISTEN_CISCO_ASA_UDP_PORT=50512
+      - SC4S_LISTEN_CISCO_ACS_UDP_PORT=50513
+      - SC4S_LISTEN_CISCO_IOS_UDP_PORT=50514
+      - SC4S_LISTEN_CISCO_UCS_UDP_PORT=50515
+      - SC4S_LISTEN_NETAPP_ONTAP_UDP_PORT=50518
+      - SC4S_LISTEN_PALOALTO_PANOS_UDP_PORT=50519
+      - SC4S_LISTEN_F5_BIGIP_UDP_PORT=50517
+      - SC4S_LISTEN_VMWARE_VSPHERE_TCP_PORT=1514
+      - SC4S_ARCHIVE_GLOBAL=no
+      - SC4S_LISTEN_CHECKPOINT_SPLUNK_NOISE_CONTROL=yes
+      - SC4S_DEST_SPLUNK_HEC_FALLBACK_INDEX=shared_ev_infra_prod
+    volumes:
+      - "./sc4s/conf.d/local/context/splunk_metadata.csv:/etc/syslog-ng/conf.d/local/context/splunk_metadata.csv"
+      # mount fireeye destination config here (note that tls certs are required for this to work)
+      - "./sc4s/conf.d/local/destinations/fireeye_nx.conf:/etc/syslog-ng/conf.d/local/destinations/fireeye_nx.conf"
+      - splunk-sc4s-var:/var/lib/syslog-ng
+
+  splunk:
+    image: splunk/splunk:latest
+    # networks:
+    #   - host
+    network_mode: "bridge"
+    container_name: splunk
+    hostname: splunk
+    ports:
+      - "8000:8000"
+      - "8088:8088"
+      - "8089:8089"
+      - "9997:9997"
+    environment:
+      - SPLUNK_PASSWORD=1-splunk-password
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_HEC_TOKEN=YOUR_HEC_TOKEN_HERE
+      - TEST_SC4S_ACTIVATE_EXAMPLES=yes
+    volumes:
+      - "./splunk-test/default.yml:/tmp/defaults/default.yml"
+
+volumes:
+  splunk-sc4s-var:
+# networks:
+#   host:
+#     name: host
+#     external: true
